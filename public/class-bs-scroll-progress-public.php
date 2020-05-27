@@ -100,4 +100,10 @@ class Bs_Scroll_Progress_Public {
 
 	}
 
+	public function show_progress_bar() {
+
+	    include plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/bs-scroll-progress-public-display.php';
+
+    }
+
 }

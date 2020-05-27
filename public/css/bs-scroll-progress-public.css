@@ -2,3 +2,11 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+#bs_progress-bar {
+    position: fixed;
+    top: 0px;
+    width: 0;
+    background-color: #73af3d;
+    z-index: 999999;
+    height: 10px;
+}

@@ -29,4 +29,26 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	/*$( window ).load(function() {
+
+	});*/
+
+	$( window ).scroll(function() {
+		var topHeight = $(this).scrollTop();
+		var windowHeight = $(this).height();
+		var fullHeight = $(document).height();
+		/*var scrollRoughPercent = ((topHeight + windowHeight) * 100) / fullHeight;
+		var scrollPercent;
+
+		if (scrollRoughPercent < 50)
+			scrollPercent = (topHeight * 100) / fullHeight;
+		else
+			scrollPercent = scrollRoughPercent;*/
+
+		var scrollPercent = (topHeight * 100) / (fullHeight - windowHeight);
+
+		console.log(scrollPercent);
+		$('#bs_progress-bar').css('width', scrollPercent + '%');
+	} );
+
 })( jQuery );
