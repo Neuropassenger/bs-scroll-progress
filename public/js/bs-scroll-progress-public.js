@@ -34,20 +34,12 @@
 	});*/
 
 	$( window ).scroll(function() {
-		var topHeight = $(this).scrollTop();
-		var windowHeight = $(this).height();
-		var fullHeight = $(document).height();
-		/*var scrollRoughPercent = ((topHeight + windowHeight) * 100) / fullHeight;
-		var scrollPercent;
+		var windowOffset = $(this).scrollTop();
+		var articleOffset = $('article.single-post').scrollTop();
+		var articleHeight = $('article.single-post').height();
 
-		if (scrollRoughPercent < 50)
-			scrollPercent = (topHeight * 100) / fullHeight;
-		else
-			scrollPercent = scrollRoughPercent;*/
+		var scrollPercent = ((windowOffset - articleOffset) * 100) / (articleHeight);
 
-		var scrollPercent = (topHeight * 100) / (fullHeight - windowHeight);
-
-		console.log(scrollPercent);
 		$('#bs_progress-bar').css('width', scrollPercent + '%');
 	} );
 
