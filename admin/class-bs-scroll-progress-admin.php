@@ -100,4 +100,96 @@ class Bs_Scroll_Progress_Admin {
 
 	}
 
+    public function add_plugin_settings_page() {
+        add_options_page(
+            'Scroll Progress',
+            'Scroll Progress',
+            'manage_options',
+            'bs_scroll_progress',
+            array( $this, 'show_plugin_settings_page' )
+        );
+    }
+
+    function show_plugin_settings_page() {
+        ?>
+        <h1 class="wp-heading-inline">
+            <?php echo get_admin_page_title() ?>
+        </h1>
+        <form method="post" action="options.php">
+        <?php
+        settings_fields( 'bs_sp_general' );
+        do_settings_sections( 'bs_scroll_progress' );
+        submit_button();
+        ?>
+        </form>
+        <?
+    }
+
+    public function add_plugin_settings() {
+	    register_setting(
+	        'bs_sp_general',
+            'bs_sp_selector'
+        );
+
+        register_setting(
+            'bs_sp_general',
+            'bs_sp_color'
+        );
+
+        register_setting(
+            'bs_sp_general',
+            'bs_sp_width'
+        );
+
+	    add_settings_section(
+	        'bs_sp_general',
+            'General Settings',
+            array( $this, 'show_general_settings_section' ),
+            'bs_scroll_progress'
+        );
+
+	    add_settings_field(
+	        'bs_sp_selector',
+            'CSS tag selector with main content',
+            array( $this, 'show_bs_sp_selector_field' ),
+            'bs_scroll_progress',
+            'bs_sp_general'
+        );
+
+        add_settings_field(
+            'bs_sp_color',
+            'Color',
+            array( $this, 'show_bs_sp_color_field' ),
+            'bs_scroll_progress',
+            'bs_sp_general'
+        );
+
+        add_settings_field(
+            'bs_sp_width',
+            'Width in px',
+            array( $this, 'show_bs_sp_width_field' ),
+            'bs_scroll_progress',
+            'bs_sp_general'
+        );
+    }
+
+    function show_general_settings_section() {
+        // Block before fields
+    }
+
+    function show_bs_sp_selector_field() {
+        $selector = get_option( 'bs_sp_selector' );
+        echo "<input type='text' class='regular-text' name='bs_sp_selector' value='" . ($selector ?? 'body') . "'>";
+    }
+
+    function show_bs_sp_color_field() {
+        $color = get_option( 'bs_sp_color' );
+        echo "<input type='color' class='regular-text' name='bs_sp_color' value='" . ($color ?? '#73af3d') . "'>";
+    }
+
+    function show_bs_sp_width_field() {
+        $width = get_option( 'bs_sp_width' );
+        echo "<input type='number' min='1' max='10' step='1' class='regular-text' name='bs_sp_width' value='" . ($width ?? '1') . "'>";
+    }
+
 }

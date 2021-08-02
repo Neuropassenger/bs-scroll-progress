@@ -13,10 +13,9 @@
  * @package           Bs_Scroll_Progress
  *
  * @wordpress-plugin
- * Plugin Name:       Scroll Progress
- * Plugin URI:        https://neuropassenger.ru
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Plugin Name:       BS Scroll Progress
+ * Description:       This plugin adds a small colored scroll bar to the top of site pages.
+ * Version:           1.0.1
  * Author:            Oleg Sokolov
  * Author URI:        https://neuropassenger.ru
  * License:           GPL-2.0+
@@ -35,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'BS_SCROLL_PROGRESS_VERSION', '1.0.0' );
+define( 'BS_SCROLL_PROGRESS_VERSION', '1.0.1' );
 
 /**
  * The code that runs during plugin activation.

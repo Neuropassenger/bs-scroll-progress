@@ -29,3 +29,7 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+delete_option( 'bs_sp_selector' );
+delete_option( 'bs_sp_color' );
+delete_option( 'bs_sp_width' );

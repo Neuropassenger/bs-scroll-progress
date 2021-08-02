@@ -59,46 +59,61 @@ class Bs_Scroll_Progress_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+    public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Bs_Scroll_Progress_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Bs_Scroll_Progress_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+        /**
+         * This function is provided for demonstration purposes only.
+         *
+         * An instance of this class should be passed to the run() function
+         * defined in Bs_Scroll_Progress_Loader as all of the hooks are defined
+         * in that particular class.
+         *
+         * The Bs_Scroll_Progress_Loader will then create the relationship
+         * between the defined hooks and the functions defined in this
+         * class.
+         */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/bs-scroll-progress-public.css', array(), $this->version, 'all' );
+        wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/bs-scroll-progress-public.css', array(), $this->version, 'all' );
 
-	}
+        $selector = get_option( 'bs_sp_selector' );
+        $color = get_option( 'bs_sp_color' );
+        $width = get_option( 'bs_sp_width' );
+
+        if ( $selector && $color && $width ) {
+            $css = "#bs_progress-bar {background-color: {$color}; height: {$width}px;}";
+            wp_add_inline_style( $this->plugin_name, $css );
+        }
+
+    }
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+    public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Bs_Scroll_Progress_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Bs_Scroll_Progress_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+        /**
+         * This function is provided for demonstration purposes only.
+         *
+         * An instance of this class should be passed to the run() function
+         * defined in Bs_Scroll_Progress_Loader as all of the hooks are defined
+         * in that particular class.
+         *
+         * The Bs_Scroll_Progress_Loader will then create the relationship
+         * between the defined hooks and the functions defined in this
+         * class.
+         */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bs-scroll-progress-public.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bs-scroll-progress-public.js', array( 'jquery' ), $this->version, false );
 
-	}
+        $selector = get_option( 'bs_sp_selector' );
+        if ( $selector ) {
+            $script = "const bsSPSelector = '{$selector}';";
+            wp_add_inline_script( $this->plugin_name, $script, 'before' );
+        }
+
+    }
 
 	public function show_progress_bar() {
 

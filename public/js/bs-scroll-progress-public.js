@@ -29,16 +29,11 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-	/*$( window ).load(function() {
-
-	});*/
-
 	$( window ).scroll(function() {
-		var windowOffset = $(this).scrollTop();
-		var articleOffset = $('article.single-post').scrollTop();
-		var articleHeight = $('article.single-post').height();
-
-		var scrollPercent = ((windowOffset - articleOffset) * 100) / (articleHeight);
+		const windowOffset = $(this).scrollTop();
+		const articleOffset = $(bsSPSelector).scrollTop();
+		const articleHeight = $(bsSPSelector).height();
+		const scrollPercent = ((windowOffset - articleOffset) * 100) / (articleHeight);
 
 		$('#bs_progress-bar').css('width', scrollPercent + '%');
 	} );
